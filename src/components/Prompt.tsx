@@ -213,6 +213,13 @@ export function Prompt({
                         }}
                         value={data.text ?? ""}
                         onChange={(e) => onType(e.target.value)}
+                        onKeyDown={(event) => {
+                          // Not really necessary because of cmd+p and cmd+enter
+                          if (event.key === "Enter" && event.shiftKey) {
+                            onMainButtonClick();
+                          }
+                        }
+                        }
                         placeholder={
                           data.fluxNodeType === FluxNodeType.User
                             ? "Write a poem about..."
